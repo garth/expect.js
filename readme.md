@@ -43,7 +43,7 @@ which is essentially equivalent to below, however the property may not exist:
 
 our dummy properties such as _and_ and _with_ also help express chaining:
 
-    expect(user).to.be.an('object').and.have.property('name');
+    expect(user).to.be.a('object').and.have.property('name');
 
 ## improving the readability of the exception message
 
@@ -63,9 +63,9 @@ property gender`.
 You can also completely replace the default message with your own custom
 message by adding a message to the assertion method(s)
 
-     expect({name:"John", age:30}).to.have.property('gender', 'this person has no gender');
-     expect({name:"John", age:30}).to.have.property('age', 'this person has no age')
-       .and.be.below(25, 'this person is too old');
+    expect({name:"John", age:30}).to.have.property('gender', 'this person has no gender');
+    expect({name:"John", age:30}).to.have.property('age', 'this person has no age')
+      .and.be.below(25, 'this person is too old');
 
 In some cases a marginal sacrifice of code readability can improve the
 readability of unmet expectations.
@@ -95,8 +95,8 @@ Assert === true:
 
 Assert === false:
 
-     expect(false).to.be.false();
-     expect(0).to.not.be.false();
+    expect(false).to.be.false();
+    expect(0).to.not.be.false();
 
 ## arguments
 
@@ -228,14 +228,14 @@ Assert own object keys, which must match _exactly_,
 and will fail if you omit a key or two:
 
     var obj = { foo: 'bar', baz: 'raz' };
-    expect(obj).to.have.keys(['foo', 'bar']);
+    expect(obj).to.have.keys(['foo', 'baz']);
 
 using the _include_ modifier, we can check inclusion of a key,
 but not fail when we omit a few:
 
     expect(obj).to.include.key(['foo']);
-    expect(obj).to.include.key(['bar']);
-    expect(obj).to.not.include.key(['baz']);
+    expect(obj).to.include.key(['baz']);
+    expect(obj).to.not.include.key(['raz']);
 
 Aliases: _key_
 

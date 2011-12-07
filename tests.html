@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Expect.js tests</title>
+  <script src="expect.js"></script>
+  <script>
+    
+      var user = {
+          name: 'tj'
+        , pets: ['tobi', 'loki', 'jane', 'bandit']
+        , age: 25
+      };
+
+      expect(user).property('name').to.equal('tj');
+      expect(user).property('pets').to.have.lengthOf(4);
+      //expect(err).to.not.exist();
+      //expect(result).to.exist().and.property('bar').to.equal(foo);
+      expect(user).to.have.property('pets').with.lengthOf(4);
+      expect(user.pets).to.have.lengthOf(4);
+      expect(user).to.be.a('object').and.have.property('name');
+
+      try {
+        expect({name:"John", age:30}).to.have.property('gender');
+      } catch (exception) {
+        expect(exception.message).to.equal('expected [object Object] to have a property gender');
+      }
+
+      try {
+        expect({name:"John", age:30}, 'person').to.have.property('gender');
+      } catch (exception) {
+        expect(exception.message).to.equal('expected person to have a property gender');
+      }
+
+      try {
+        expect({name:"John", age:30}).to.have.property('gender', 'this person has no gender');
+      } catch (exception) {
+        expect(exception.message).to.equal('this person has no gender');
+      }
+      try {
+        expect({name:"John", age:30}).to.have.property('age', 'this person has no age')
+          .and.be.below(25, 'this person is too old');
+      } catch (exception) {
+        expect(exception.message).to.equal('this person is too old');
+      }
+
+      //## ok
+      expect(true).to.be.ok();
+      expect('yay').to.be.ok();
+      expect(1).to.be.ok();
+
+      expect(false).to.not.be.ok();
+      expect('').to.not.be.ok();
+      expect(0).to.not.be.ok();
+
+      //## true
+      expect(true).to.be.true();
+      expect('1').to.not.be.true();
+
+      //## false
+      expect(false).to.be.false();
+      expect(0).to.not.be.false();
+
+      //## arguments
+      var args = (function(){ return arguments; })(1,2,3);
+      expect(args).to.be.arguments();
+      expect([]).to.not.be.arguments();
+
+      //## empty
+      expect([]).to.be.empty();
+      expect('').to.be.empty();
+      expect({ length: 0 }).should.be.empty();
+
+      //## eql
+      expect({ foo: 'bar' }).to.eql({ foo: 'bar' });
+      expect([1,2,3]).to.eql([1,2,3]);
+
+      //## equal
+      expect(4).to.equal(4);
+      expect('test').to.equal('test');
+      expect([1,2,3]).to.not.equal([1,2,3]);
+
+      //## within
+      expect(user.age).to.be.within(5, 50);
+
+      //## a
+      expect(user).to.be.a('object');
+      expect('test').to.be.a('string');
+
+      //## instanceof
+      expect(user).to.be.an.instanceof(User);
+      expect([]).to.be.an.instanceof(Array);
+
+      //## above
+      expect(user.age).to.be.greaterThan(5);
+      expect(user.age).to.not.be.above(100);
+
+      //## below
+      expect(user.age).to.be.lessThan(100);
+      expect(user.age).to.not.be.below(5);
+
+      //## match
+      expect('name').to.match(/^\w+$/);
+
+      //## length
+      expect(user.pets).to.have.length(4);
+      expect(user.pets).to.have.lengthOf(4);
+
+      //## string
+      expect('foobar').to.include.string('foo');
+      expect('foobar').to.include.string('bar');
+      expect('foobar').to.not.include.string('baz');
+
+      //## object
+      var obj = {foo: 'bar', baz: {baaz: 42}};
+      expect(obj).to.include.object({foo: 'bar'});
+      expect(obj).to.include.object({baz: {baaz: 42}});
+      expect(obj).to.not.include.object({foo: 'baz'});
+
+      //## property
+      expect(user).to.have.property('name');
+      expect(user).property('age').to.equal(25);
+      expect(user).to.not.have.property('rawr');
+      expect(user).property('age').to.not.equal(0);
+
+      //## ownProperty
+      expect({ foo: 'bar' }).to.have.ownProperty('foo');
+
+      //## contain
+      expect([1,2,3]).to.contain(3);
+      expect([1,2,3]).to.contain(2);
+      expect([1,2,3]).to.not.contain(4);
+
+      //## keys
+      obj = { foo: 'bar', baz: 'raz' };
+      expect(obj).to.have.keys(['foo', 'baz']);
+
+      //## include keys
+      expect(obj).to.include.key(['foo']);
+      expect(obj).to.include.key(['baz']);
+      expect(obj).to.not.include.key(['raz']);
+
+      //## respondTo
+      expect(user).to.respondTo('email');
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
