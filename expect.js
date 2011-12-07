@@ -378,8 +378,8 @@
     };
   }
 
-  exports.expect = function(obj) {
-    return new Assertion(obj);
+  exports.expect = function(obj, desc) {
+    return new Assertion(obj, desc);
   };
 
 })(window);
