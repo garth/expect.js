@@ -92,6 +92,20 @@
     return x.toString();
   }
 
+  function addSugar(assertion) {
+    //add some sugar
+    assertion.to = assertion;
+    assertion.be = assertion;
+    assertion.have = assertion;
+    assertion.an = assertion;
+    assertion.it = assertion;
+    assertion.should = assertion;
+
+    //chaining sugar
+    assertion.and = assertion;
+    assertion.with = assertion;
+  };
+
   var AssertionError = function (error)
   {
     this.message = error.message;
@@ -115,6 +129,7 @@
       {
         modifiedAssertion[option] = options[option];
       }
+      addSugar(modifiedAssertion);
       return modifiedAssertion;
     }
 
@@ -122,17 +137,8 @@
     this.not = modify(this, { negate: true });
     this.include = modify(this, { includes: true });
 
-    //add some sugar
-    this.to = this;
-    this.be = this;
-    this.have = this;
-    this.an = this;
-    this.it = this;
-    this.should = this;
-
-    //chaining sugar
-    this.and = this;
-    this.with = this;
+    //add sugar properties
+    addSugar(this);
 
     //do some testing
     this.assert = function(expr, msg, negatedMsg){
