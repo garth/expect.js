@@ -159,7 +159,7 @@
     };
 
     this.empty = function(msg) {
-      expect(this.obj).to.have.a.property('length');
+      expect(this.obj).to.have.property('length');
       this.assert(
           0 === this.obj.length
         , msg || ('expected ' + this.desc + ' to be empty')
