@@ -58,7 +58,7 @@
       }
       a = pSlice.call(a);
       b = pSlice.call(b);
-      return _deepEqual(a, b);
+      return deepEqual(a, b);
     }
     try{
       var ka = Object.keys(a),
@@ -82,7 +82,7 @@
     //~~~possibly expensive deep test
     for (i = ka.length - 1; i >= 0; i--) {
       key = ka[i];
-      if (!_deepEqual(a[key], b[key] ))
+      if (!deepEqual(a[key], b[key] ))
          return false;
     }
     return true;
