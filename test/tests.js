@@ -282,4 +282,102 @@ describe('expect.js', function () {
       expect([]).to.not.be.a('string');
     });
   });
+
+  describe('instanceOf', function () {
+    it('should pass when given a custom object', function () {
+      var Custom = function() {};
+      var custom = new Custom();
+      expect(custom).to.be.an.instanceOf(Custom);
+    });
+    it('should pass when testing for an array', function () {
+      expect([]).to.be.an.instanceOf(Array);
+    });
+  });
+
+  describe('above', function () {
+    it('should pass when the value is greater', function () {
+      expect(6).to.be.greaterThan(5);
+    });
+    it('should not pass when the value is the same', function () {
+      try { expect(100).to.be.above(100); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+    it('should not pass when the value is less', function () {
+      try { expect(0).to.be.above(1); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+  });
+
+  describe('not above', function () {
+    it('should pass the when the value is less', function () {
+      expect(4).to.not.be.greaterThan(5);
+    });
+    it('should pass the when value is the same', function () {
+      expect(100).to.not.be.above(100);
+    });
+    it('should not pass when value greater', function () {
+      try { expect(1).to.not.be.above(0); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+  });
+
+  describe('below', function () {
+    it('should pass when the value is less', function () {
+      expect(5).to.be.lessThan(6);
+    });
+    it('should not pass when the value is the same', function () {
+      try { expect(100).to.be.below(100); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+    it('should not pass when the value is greater', function () {
+      try { expect(1).to.be.below(0); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+  });
+
+  describe('not below', function () {
+    it('should pass the when the value is greater', function () {
+      expect(5).to.not.be.lessThan(4);
+    });
+    it('should pass the when value is the same', function () {
+      expect(100).to.not.be.below(100);
+    });
+    it('should not pass when value less', function () {
+      try { expect(0).to.not.be.below(1); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+  });
+
+  describe('match', function () {
+    it('should pass when a match', function () {
+      expect('name').to.match(/^\w+$/);
+    });
+    it('should not pass when not a match', function () {
+      try { expect('name name').to.match(/^\w+$/); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+  });
+
+  describe('not match', function () {
+    it('should not pass when a match', function () {
+      try { expect('name').to.not.match(/^\w+$/); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+    it('should pass when not a match', function () {
+      expect('name name').to.not.match(/^\w+$/);
+    });
+  });
+
+  describe('length', function () {
+    it('should pass when array length is equal', function () {
+      expect([1,2]).to.have.length(2);
+    });
+    it('should pass when object.length is equal', function () {
+      expect({length:3}).to.have.length(3);
+    });
+    it('should not pass when array length is not equal', function () {
+      try { expect([1,2]).to.have.length(3); } catch (e) { return; }
+      throw 'Did not throw';
+    });
+  });
 });
