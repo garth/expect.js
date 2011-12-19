@@ -142,12 +142,12 @@ Assert __typeof__:
     expect(user).to.be.a('object');
     expect('test').to.be.a('string');
 
-## instanceof
+## instanceOf
 
-Assert __instanceof__:
+Assert __instanceOf__:
 
-    expect(user).to.be.an.instanceof(User);
-    expect([]).to.be.an.instanceof(Array);
+    expect(user).to.be.an.instanceOf(User);
+    expect([]).to.be.an.instanceOf(Array);
 
 ## above
 

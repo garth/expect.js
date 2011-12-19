@@ -232,7 +232,7 @@
       return this;
     };
 
-    this.instanceof = function(constructor, msg) {
+    this.instanceOf = function(constructor, msg) {
       var name = constructor.name;
       this.assert(
           this.obj instanceof constructor
